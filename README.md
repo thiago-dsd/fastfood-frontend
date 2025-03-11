@@ -26,9 +26,9 @@
 ## Este projeto utiliza o **Tailwind CSS** para estilização, e as cores estão definidas no arquivo `tailwind.config.js`:
 
 - **`ct-primary`**: Cor principal, vermelha (#EB0029).
+- **`ct-secondary`**: Cor do degradê (substituída por outras cores conforme escolha).
 - **`ct-dark-600`**: Cor escura (#222).
 - **`ct-dark-200`**: Cor intermediária clara (#e5e7eb).
-- **`ct-blue-600`**: Cor do degradê (substituída por outras cores conforme escolha).
 
 ## Instalação
 
