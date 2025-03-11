@@ -8,11 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'ct-white': '#ffffff',
         'ct-dark-600': '#222',
         'ct-dark-200': '#e5e7eb',
         'ct-dark-100': '#f5f6f7',
-        'ct-blue-600': '#2363eb',
-        'ct-yellow-600': '#f9d13e',
+        'ct-blue-600': '#FF6347',  // Tomato Red (mais vibrante)
+        'ct-primary': '#EB0029',
       },
       fontFamily: {
         Poppins: ['Poppins, sans-serif'],

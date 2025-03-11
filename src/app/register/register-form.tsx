@@ -63,27 +63,26 @@ export default function RegisterForm() {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(onSubmitHandler)}
-        className="max-w-md w-full mx-auto overflow-hidden shadow-lg bg-ct-dark-200 rounded-2xl p-8 space-y-5"
+        className="max-w-md w-full mx-auto overflow-hidden shadow-lg bg-ct-dark-100 rounded-2xl p-8 space-y-5"
       >
-        <FormInput label="Full Name" name="name" />
+        <FormInput label="Nome completo" name="name" />
         <FormInput label="Email" name="email" type="email" />
-        <FormInput label="Password" name="password" type="password" />
+        <FormInput label="Senha" name="password" type="password" />
         <FormInput
-          label="Confirm Password"
+          label="Confirme sua senha"
           name="passwordConfirm"
           type="password"
         />
         <span className="block">
-          Already have an account?{" "}
+        Já tem uma conta?{" "}
           <Link href="/login" className="text-ct-blue-600">
-            Login Here
+          Entre aqui
           </Link>
         </span>
         <LoadingButton
           loading={store.requestLoading}
-          textColor="text-ct-blue-600"
         >
-          Register
+          Criar
         </LoadingButton>
       </form>
     </FormProvider>
