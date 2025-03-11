@@ -75,7 +75,7 @@ export default function RegisterForm() {
         />
         <span className="block">
         Já tem uma conta?{" "}
-          <Link href="/login" className="text-ct-blue-600">
+          <Link href="/login" className="text-ct-secondary">
           Entre aqui
           </Link>
         </span>

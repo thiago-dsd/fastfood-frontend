@@ -67,7 +67,7 @@ const Header = () => {
           </ul>
         </nav>
       </header>
-      <div className="pt-4 pl-2 bg-ct-blue-600 fixed">
+      <div className="pt-4 pl-2 bg-ct-secondary fixed">
         {store.requestLoading && <Spinner color="text-ct-primary" />}
       </div>
     </>

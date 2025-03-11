@@ -84,7 +84,7 @@ export default function LoginForm() {
         </LoadingButton>
         <span className="block">
         Precisa de uma conta?{" "}
-          <Link href="/register" className="text-ct-blue-600">
+          <Link href="/register" className="text-ct-secondary">
           Inscreva-se aqui
           </Link>
         </span>
