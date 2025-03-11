@@ -1,76 +1,60 @@
-## 1.  JWT Authentication in Next.js 13 API Route Handlers
+# FastFood-Frontend
 
-In this article, we'll explore how to implement JWT authentication in Next.js 13 API route handlers. We'll cover the process of generating and verifying JWTs, handling authentication errors, and protecting sensitive API endpoints.
+**FastFood-Frontend** é a interface de usuário do sistema FastFood, desenvolvido com **Next.js** e **Tailwind CSS**. O objetivo do aplicativo é fornecer uma plataforma simples e intuitiva para usuários se autenticarem, consultarem o cardápio e realizarem pedidos no restaurante.
 
-![JWT Authentication in Next.js 13 API Route Handlers](https://codevoweb.com/wp-content/uploads/2023/05/JWT-Authentication-in-Next.js-13-API-Route-Handlers.webp)
+## Tecnologias
 
-### Topics Covered
+- **Next.js**: Framework React para renderização do lado do servidor (SSR) e geração estática de páginas (SSG).
+- **Tailwind CSS**: Framework de utilitário CSS para estilização rápida e responsiva.
+- **React**: Biblioteca JavaScript para construir interfaces de usuário interativas.
+- **OAuth2**: Implementação de autenticação e autorização para garantir que apenas usuários autenticados acessem certas funcionalidades.
 
-- Running the Next.js 13 JWT API Project Locally
-- Setup the Next.js Project
-- Setup Prisma in the Next.js Project
-    - Define the Database Model and Run Migrations
-    - Instantiate the Prisma Client
-- Create the Request Validation Schemas
-- Create Some Utility Functions
-    - Function to Get an Environment Variable
-    - Function to Return a Next.js API Response
-- Function to Return a Next.js API Response
-    - Sign the JWT using HS256 Algorithm
-    - Create a Function to Verify the JWT
-- Create a Next.js Middleware to Protect Routes
-- Create API Route Handlers to Handle the JWT Authentication
-    - Account Registration API Route Handler
-    - Account Login API Route Handler
-    - Account Logout API Route Handler
-    - Fetch Authenticated User Route Handler
-- Test the JWT Authentication
-    - Register an Account
-    - Sign in to your Account
-    - Get your Account Credentials
-    - Logout from your Account
-- Conclusion
+## Funcionalidades
 
+- **Cadastro de usuário**: Permite que os usuários se cadastrem para começar a fazer pedidos.
+- **Login**: Usuários podem se autenticar para acessar o sistema.
+- **Interação com o cardápio**: Usuários podem consultar itens do cardápio e realizar pedidos.
+- **Design responsivo**: A interface é adaptável a diferentes tamanhos de tela, proporcionando uma boa experiência em dispositivos móveis e desktop.
 
+## Estrutura de Diretórios
 
-Read the entire article here: [https://codevoweb.com/jwt-authentication-in-nextjs-13-api-route-handlers/](https://codevoweb.com/jwt-authentication-in-nextjs-13-api-route-handlers/)
+- **`pages/`**: Contém as páginas do aplicativo, incluindo a página de login, criação de conta e outras telas do sistema.
+- **`components/`**: Contém os componentes reutilizáveis, como o cabeçalho e os formulários.
+- **`styles/`**: Contém os arquivos de estilos globais do aplicativo.
+- **`public/`**: Contém arquivos públicos, como imagens e ícones.
 
-## 2.  User Registration and Login in Next.js 13 App Directory
+## Este projeto utiliza o **Tailwind CSS** para estilização, e as cores estão definidas no arquivo `tailwind.config.js`:
 
-In this article, you will learn how to build a frontend application within the new Next.js 13 app directory that covers various aspects of authentication such as user registration, login, logout, protected pages via middleware, protected pages via React Hooks, and more. 
+- **`ct-primary`**: Cor principal, vermelha (#EB0029).
+- **`ct-dark-600`**: Cor escura (#222).
+- **`ct-dark-200`**: Cor intermediária clara (#e5e7eb).
+- **`ct-blue-600`**: Cor do degradê (substituída por outras cores conforme escolha).
 
-![User Registration and Login in Next.js 13 App Directory](https://codevoweb.com/wp-content/uploads/2023/05/User-Registration-and-Login-in-Next.js-13-App-Directory.webp)
+## Instalação
 
-### Topics Covered
+Para rodar este projeto localmente, siga as etapas abaixo:
 
-- Running the Next.js 13 JWT Authentication Project
-- Install Packages and Configure Tailwind CSS
-- Create the TypeScript Types and API Request Functions
-    - API Response Types
-    - API Request Functions
-- Setup a Global Application State with Zustand
-- Implement the Authentication Logic
-    - Protect Page and API Routes in Next.js Middleware
-    - Create an Authentication Session Hook
-    - Create a Client-side JWT Protection Component
-- Create a Couple of Reusable Components
-    - Create a Spinner Component
-    - Create a Loading Button Component
-    - Create a Form Input Component
-    - Header Component with Logout Functionality
-- Create the Application Page Components
-    - Create an Error Handling Utility Function
-    - Account Registration Page
-    - Account Login Page
-    - Profile Page
-- Testing the User Registration and Login Flow
-    - Register an Account
-    - Log in to your Account
-    - View your Account Credentials
-- Conclusion
+### 1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/fastfood-frontend.git
+```
+
+### 2. Navegue até o diretório do projeto:
+
+```bash
+git clone https://github.com/seu-usuario/fastfood-frontend.git
+```
+
+### 3. Instale as dependências:
+
+```bash
+npm install
+```
 
 
-Read the entire article here: [https://codevoweb.com/user-registration-login-in-nextjs-13-app-directory/](https://codevoweb.com/user-registration-login-in-nextjs-13-app-directory/)
+### 4. Execute o aplicativo:
 
-
-
+```bash
+npm run dev
+```
