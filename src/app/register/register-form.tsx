@@ -37,23 +37,35 @@ export default function RegisterForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmitSuccessful]);
 
-  async function RegisterUserFunction(credentials: RegisterUserInput) {
+  async function RegisterUserFunction(credentials: RegisterUserInput & { passwordConfirm?: string }) {
     store.setRequestLoading(true);
     try {
-      const user = await apiRegisterUser(JSON.stringify(credentials));
-      store.setAuthUser(user);
+      const { passwordConfirm, ...userData } = credentials; 
+      const userPayload = { ...userData, role: "user" }; 
+  
+      const response = await fetch(`${process.env.NEXT_PUBLIC_CORE_API}/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userPayload),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Erro ao criar conta");
+      }
+  
+      toast.success("Conta criada com sucesso! Faça login.");
       return router.push("/login");
     } catch (error: any) {
-      if (error instanceof Error) {
-        handleApiError(error);
-      } else {
-        toast.error(error.message);
-        console.log("Error message:", error.message);
-      }
+      console.error(error);
+      toast.error("Erro ao criar conta. Tente novamente.");
     } finally {
       store.setRequestLoading(false);
     }
   }
+  
+  
 
   const onSubmitHandler: SubmitHandler<RegisterUserInput> = (values) => {
     RegisterUserFunction(values);
@@ -65,7 +77,7 @@ export default function RegisterForm() {
         onSubmit={handleSubmit(onSubmitHandler)}
         className="max-w-md w-full mx-auto overflow-hidden shadow-lg bg-ct-dark-100 rounded-2xl p-8 space-y-5"
       >
-        <FormInput label="Nome completo" name="name" />
+        <FormInput label="Nome" name="name" />
         <FormInput label="Email" name="email" type="email" />
         <FormInput label="Senha" name="password" type="password" />
         <FormInput

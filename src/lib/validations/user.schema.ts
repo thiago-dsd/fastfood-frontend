@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 export const RegisterUserSchema = z
   .object({
     name: z
@@ -13,13 +12,11 @@ export const RegisterUserSchema = z
       })
       .min(1, "Email is required")
       .email("Email is invalid"),
-    photo: z.string().optional(),
     password: z
       .string({
         required_error: "Password is required",
       })
-      .min(1, "Password is required")
-      .min(8, "Password must be more than 8 characters")
+      .min(8, "Password must be at least 8 characters")
       .max(32, "Password must be less than 32 characters"),
     passwordConfirm: z
       .string({
@@ -48,4 +45,4 @@ export const LoginUserSchema = z.object({
 });
 
 export type LoginUserInput = z.infer<typeof LoginUserSchema>;
-export type RegisterUserInput = z.infer<typeof RegisterUserSchema>;
+export type RegisterUserInput = Omit<z.infer<typeof RegisterUserSchema>, "passwordConfirm">;
