@@ -42,22 +42,32 @@ export default function LoginForm() {
   async function LoginUserFunction(credentials: LoginUserInput) {
     store.setRequestLoading(true);
     try {
-      await apiLoginUser(JSON.stringify(credentials));
+          const response = await fetch(`${process.env.NEXT_PUBLIC_CORE_API}/user/auth/token`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(credentials),
+        });
 
-      toast.success("Logged in successfully");
-      return router.push("/profile");
-    } catch (error: any) {
-      console.log(error);
-      if (error instanceof Error) {
-        handleApiError(error);
-      } else {
-        toast.error(error.message);
-        console.log("Error message:", error.message);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Login failed. Check your credentials.");
       }
+
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("refresh_token", data.refresh_token);
+        toast.success("Logged in successfully");
+        return router.push("/profile");
+    } catch (error: any) {
+        console.log(error);
+        toast.error("Login failed. Try again.");
     } finally {
-      store.setRequestLoading(false);
+        store.setRequestLoading(false);
     }
-  }
+}
+
 
   const onSubmitHandler: SubmitHandler<LoginUserInput> = (values) => {
     LoginUserFunction(values);
