@@ -42,8 +42,9 @@ export default function LoginForm() {
   async function LoginUserFunction(credentials: LoginUserInput) {
     store.setRequestLoading(true);
     try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_CORE_API}/user/auth/token`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_CORE_API}/user/auth/token`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -53,20 +54,21 @@ export default function LoginForm() {
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.message || "Login failed. Check your credentials.");
-      }
+            throw new Error(data.message || "Login failed. Check your credentials.");
+        }
 
         localStorage.setItem("token", data.token);
         localStorage.setItem("refresh_token", data.refresh_token);
         toast.success("Logged in successfully");
-        return router.push("/profile");
+        return router.push("/");
     } catch (error: any) {
-        console.log(error);
-        toast.error("Login failed. Try again.");
+      console.log(error);
+      toast.error("Erro ao realizar o login. Tente novamente!");
     } finally {
         store.setRequestLoading(false);
     }
 }
+
 
 
   const onSubmitHandler: SubmitHandler<LoginUserInput> = (values) => {

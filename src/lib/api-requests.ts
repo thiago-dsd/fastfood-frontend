@@ -1,6 +1,6 @@
 import { FilteredUser, UserLoginResponse, UserResponse } from "./types";
 
-const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
+const SERVER_ENDPOINT = process.env.NEXT_PUBLIC_CORE_API || "http://127.0.0.1:4200";
 
 async function handleResponse<T>(response: Response): Promise<T> {
   const contentType = response.headers.get("Content-Type") || "";
@@ -21,7 +21,7 @@ async function handleResponse<T>(response: Response): Promise<T> {
 export async function apiRegisterUser(
   credentials: string
 ): Promise<FilteredUser> {
-  const response = await fetch(`${SERVER_ENDPOINT}/api/auth/register`, {
+  const response = await fetch(`${SERVER_ENDPOINT}/user`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -34,7 +34,7 @@ export async function apiRegisterUser(
 }
 
 export async function apiLoginUser(credentials: string): Promise<string> {
-  const response = await fetch(`${SERVER_ENDPOINT}/api/auth/login`, {
+  const response = await fetch(`${SERVER_ENDPOINT}/user/auth/token`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -66,7 +66,7 @@ export async function apiGetAuthUser(token?: string): Promise<FilteredUser> {
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }
-  const response = await fetch(`${SERVER_ENDPOINT}/api/users/me`, {
+  const response = await fetch(`${SERVER_ENDPOINT}/users/me`, {
     method: "GET",
     credentials: "include",
     headers,

@@ -3,7 +3,6 @@ export interface FilteredUser {
   name: string;
   email: string;
   role: string;
-  verified: boolean;
   createdAt: string;
   updatedAt: string;
 }
