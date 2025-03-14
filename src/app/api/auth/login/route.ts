@@ -7,61 +7,42 @@ import { NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
 
 export async function POST(req: NextRequest) {
-  try {
-    const body = (await req.json()) as LoginUserInput;
-    const data = LoginUserSchema.parse(body);
+  const body = await req.json();
 
-    const user = await prisma.user.findUnique({
-      where: { email: data.email },
-    });
+  const API_URL = process.env.NEXT_PUBLIC_CORE_API;
 
-    if (!user || !(await compare(data.password, user.password))) {
-      return getErrorResponse(401, "Invalid email or password");
-    }
-
-    const JWT_EXPIRES_IN = getEnvVariable("JWT_EXPIRES_IN");
-
-    const token = await signJWT(
-      { sub: user.id },
-      { exp: `${JWT_EXPIRES_IN}m` }
-    );
-
-    const tokenMaxAge = parseInt(JWT_EXPIRES_IN) * 60;
-    const cookieOptions = {
-      name: "token",
-      value: token,
-      httpOnly: true,
-      path: "/",
-      secure: process.env.NODE_ENV !== "development",
-      maxAge: tokenMaxAge,
-    };
-
-    const response = new NextResponse(
-      JSON.stringify({
-        status: "success",
-        token,
-      }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-
-    await Promise.all([
-      response.cookies.set(cookieOptions),
-      response.cookies.set({
-        name: "logged-in",
-        value: "true",
-        maxAge: tokenMaxAge,
-      }),
-    ]);
-
-    return response;
-  } catch (error: any) {
-    if (error instanceof ZodError) {
-      return getErrorResponse(400, "failed validations", error);
-    }
-
-    return getErrorResponse(500, error.message);
+  if (!API_URL) {
+    return new NextResponse(JSON.stringify({ error: "Server configuration error" }), { status: 500 });
   }
+
+  const apiResponse = await fetch(`${process.env.NEXT_PUBLIC_CORE_API}/user/auth/token`, { 
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  if (!apiResponse.ok) {
+    return new NextResponse(JSON.stringify({ error: "Erro ao autenticar" }), { status: apiResponse.status });
+  }
+
+  const { token } = await apiResponse.json();
+
+  const response = new NextResponse(
+    JSON.stringify({ token }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  response.cookies.set("session_token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV !== "development",
+    maxAge: 60 * 60 * 24, 
+    path: "/",
+  });
+
+  return response;
 }

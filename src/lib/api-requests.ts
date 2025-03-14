@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { FilteredUser, UserLoginResponse, UserResponse } from "./types";
 
 const SERVER_ENDPOINT = process.env.NEXT_PUBLIC_CORE_API || "http://127.0.0.1:4200";
@@ -34,7 +35,7 @@ export async function apiRegisterUser(
 }
 
 export async function apiLoginUser(credentials: string): Promise<string> {
-  const response = await fetch(`${SERVER_ENDPOINT}/user/auth/token`, {
+  const response = await fetch(`/api/auth/login`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -42,14 +43,14 @@ export async function apiLoginUser(credentials: string): Promise<string> {
     },
     body: credentials,
   });
-
+  
   return handleResponse<UserLoginResponse>(response).then((data) => data.token);
 }
 
 export async function apiLogoutUser(): Promise<void> {
-  const response = await fetch(`${SERVER_ENDPOINT}/api/auth/logout`, {
+  const response = await fetch(`/api/auth/logout`, {
     method: "GET",
-    credentials: "include",
+    credentials: "include", 
     headers: {
       "Content-Type": "application/json",
     },
@@ -58,19 +59,15 @@ export async function apiLogoutUser(): Promise<void> {
   return handleResponse<void>(response);
 }
 
-export async function apiGetAuthUser(token?: string): Promise<FilteredUser> {
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-  };
-
-  if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
-  }
-  const response = await fetch(`${SERVER_ENDPOINT}/users/me`, {
+export async function apiGetAuthUser(): Promise<FilteredUser> {  
+  const response = await fetch(`/api/users/me`, {
     method: "GET",
     credentials: "include",
-    headers,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
-  return handleResponse<UserResponse>(response).then((data) => data.data.user);
+
+  return handleResponse<FilteredUser>(response).then((data) => data);
 }

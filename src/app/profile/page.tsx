@@ -1,13 +1,12 @@
+"use client"; 
 import Header from "@/components/Header";
 import { apiGetAuthUser } from "@/lib/api-requests";
 import { cookies } from "next/headers";
 import { AuthPageInvisible } from "@/lib/protect-page";
+import useStore from "@/store";
 
 export default async function ProfilePage() {
-  const cookieStore = cookies();
-  const token = cookieStore.get("token");
-
-  const user = await apiGetAuthUser(token?.value);
+  const user = useStore((state) => state.authUser);
 
   return (
     <>
@@ -19,15 +18,15 @@ export default async function ProfilePage() {
               Profile Page
             </p>
             <div className="mt-8">
-              <p className="mb-3">Id: {user.id}</p>
-              <p className="mb-3">Name: {user.name}</p>
-              <p className="mb-3">Email: {user.email}</p>
-              <p className="mb-3">Role: {user.role}</p>
+              <p className="mb-3">Id: {user?.id}</p>
+              <p className="mb-3">Name: {user?.name}</p>
+              <p className="mb-3">Email: {user?.email}</p>
+              <p className="mb-3">Role: {user?.role}</p>
             </div>
           </div>
         </div>
       </section>
-      <AuthPageInvisible />
+      {/* <AuthPageInvisible /> */}
     </>
   );
 }

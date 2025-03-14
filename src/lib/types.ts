@@ -1,10 +1,11 @@
 export interface FilteredUser {
-  id: string;
   name: string;
   email: string;
+  password: string;
   role: string;
-  createdAt: string;
-  updatedAt: string;
+  id: string;
+  created_at: string; 
+  updated_at: string; 
 }
 
 export interface UserResponse {

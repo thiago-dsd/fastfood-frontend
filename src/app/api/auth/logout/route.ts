@@ -8,6 +8,11 @@ export async function GET(req: NextRequest) {
 
   await Promise.all([
     response.cookies.set({
+      name: "session_token",
+      value: "",
+      maxAge: -1,
+    }),
+    response.cookies.set({
       name: "token",
       value: "",
       maxAge: -1,
