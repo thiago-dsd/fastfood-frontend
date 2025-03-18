@@ -59,6 +59,11 @@ const Header = () => {
                     Profile
                   </Link>
                 </li>
+                <li>
+                  <Link href="/chat" className="text-ct-dark-600">
+                    Chat
+                  </Link>
+                </li>
                 <li className="cursor-pointer" onClick={handleLogout}>
                   Logout
                 </li>
