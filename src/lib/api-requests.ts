@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
-import { FilteredUser, UserLoginResponse, UserResponse } from "./types";
+import { AgentInfo } from "./types/agent";
+import { UserLoginResponse, UserResponse, FilteredUser} from "./types/user";
+import { Message } from "./types/message";
 
 const SERVER_ENDPOINT = process.env.NEXT_PUBLIC_CORE_API || "http://127.0.0.1:4200";
 
@@ -70,4 +72,67 @@ export async function apiGetAuthUser(): Promise<FilteredUser> {
 
 
   return handleResponse<FilteredUser>(response).then((data) => data);
+}
+
+export async function apiGetChatHistory(threadId: string): Promise<Message[]> {
+  const response = await fetch(`/api/chat/history?thread_id=${threadId}`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return handleResponse<Message[]>(response);
+}
+
+export async function apiGetAgentInfo(): Promise<AgentInfo> {
+  const response = await fetch(`/api/chat/info`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return handleResponse<AgentInfo>(response);
+}
+
+export async function apiInvokeAgent(
+  message: string,
+  model?: string,
+  threadId?: string
+): Promise<Message> {
+  const response = await fetch(`/api/chat/invoke`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ message, model, thread_id: threadId }),
+  });
+
+  return handleResponse<Message>(response);
+}
+
+export async function apiStreamAgent(
+  message: string,
+  model?: string,
+  threadId?: string
+): Promise<ReadableStream<Uint8Array>> {
+  const response = await fetch(`/api/chat/stream`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ message, model, thread_id: threadId }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Failed to stream agent response");
+  }
+
+  return response.body!;
 }
