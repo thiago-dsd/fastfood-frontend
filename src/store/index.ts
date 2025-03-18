@@ -1,6 +1,7 @@
 "use client";
 
-import { FilteredUser } from "@/lib/types";
+
+import { FilteredUser } from "@/lib/types/user";
 import { create } from "zustand";
 
 type Store = {

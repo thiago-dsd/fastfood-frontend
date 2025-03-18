@@ -100,8 +100,6 @@ export async function apiGetAgentInfo(): Promise<AgentInfo> {
 
 export async function apiInvokeAgent(
   message: string,
-  model?: string,
-  threadId?: string
 ): Promise<Message> {
   const response = await fetch(`/api/chat/invoke`, {
     method: "POST",
@@ -109,7 +107,14 @@ export async function apiInvokeAgent(
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ message, model, thread_id: threadId }),
+    body: JSON.stringify({
+      message,
+      model: "gpt-4o-mini",
+      thread_id: "847c6285-8fc9-4560-a83f-4e6285809254",
+      agent_config: {
+        spicy_level: 0.8,
+      },
+    }),
   });
 
   return handleResponse<Message>(response);
