@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <>
       <header className="bg-white h-20">
-        <nav className="h-full flex justify-between container items-center">
+      <nav className="h-full flex flex-row justify-between items-center px-6 w-full">
           <div>
             <Link href="/" className="text-ct-primary text-2xl font-semibold">
               FastFood
@@ -72,9 +72,6 @@ const Header = () => {
           </ul>
         </nav>
       </header>
-      <div className="pt-4 pl-2 bg-ct-secondary fixed">
-        {store.requestLoading && <Spinner color="text-ct-primary" />}
-      </div>
     </>
   );
 };

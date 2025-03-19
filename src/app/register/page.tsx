@@ -8,16 +8,13 @@ export default async function RegisterPage() {
   return (
     <>
       <Header />
-      <section className="py-8 bg-gradient-to-r from-red-400 to-bg-red-300 min-h-screen grid place-items-center">
+      <section className="bg-cover bg-center bg-no-repeat py-8 min-h-[calc(100vh-80px)] grid place-items-center" style={{ backgroundImage: "url('/images/register-background.jpg')",
+        backgroundBlendMode: "overlay",
+      }}>
         <div className="w-full">
-          <h1 className="text-4xl xl:text-6xl text-center font-[600] text-ct-primary mb-4">
-            Bem-vindo a FastFood!
-          </h1>
-          <h2 className="text-lg text-center mb-4 text-ct-primary">
-            Cadastre-se para começar!
-          </h2>
           <RegisterForm />
         </div>
+        <div className=" inset-0 bg-black opacity-10"></div>
       </section>
     </>
   );

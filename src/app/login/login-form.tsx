@@ -65,6 +65,12 @@ export default function LoginForm() {
         onSubmit={handleSubmit(onSubmitHandler)}
         className="max-w-md w-full mx-auto overflow-hidden shadow-lg bg-ct-dark-100 rounded-2xl p-8 space-y-5"
       >
+        <h2 className="text-3xl lg:text-3xl text-center font-[600] text-ct-primary mb-4">
+                    Bem vindo de volta
+                  </h2>
+        <h3 className="text-lg text-center mb-4 text-ct-primary">
+          Entre para ter acesso!
+        </h3>
         <FormInput label="Email" name="email" type="email" />
         <FormInput label="Senha" name="password" type="password" />
 

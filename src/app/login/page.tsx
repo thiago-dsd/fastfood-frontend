@@ -8,16 +8,14 @@ export default async function LoginPage() {
   return (
     <>
       <Header />
-      <section className="bg-gradient-to-r from-red-400 to-bg-red-300 min-h-screen grid place-items-center">
+      <section className="bg-cover bg-center bg-no-repeat min-h-[calc(100vh-80px)] grid place-items-center"
+      style={{ backgroundImage: "url('/images/login-background.jpg')",
+        backgroundBlendMode: "overlay",
+      }}>
         <div className="w-full">
-          <h1 className="text-4xl lg:text-6xl text-center font-[600] text-ct-primary mb-4">
-            Bem vindo de volta
-          </h1>
-          <h2 className="text-lg text-center mb-4 text-ct-primary">
-            Entre para ter acesso!
-          </h2>
           <LoginForm />
         </div>
+        <div className=" inset-0 bg-black opacity-10"></div>
       </section>
     </>
   );

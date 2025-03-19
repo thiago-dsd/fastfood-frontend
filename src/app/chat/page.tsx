@@ -54,11 +54,11 @@ export default function ChatPage() {
   return (
     <>
       <Header />
-      <section className="bg-gradient-to-r from-red-400 to-red-300 min-h-screen pt-20">
-        <div className="max-w-4xl mx-auto bg-ct-dark-100 rounded-md h-[calc(100vh-10rem)] p-6 flex flex-col">
+      <section className="bg-gradient-to-r from-red-400 to-red-300 min-h-[calc(100vh-80px)]  flex flex-col">
+        <div className="max-w-screen flex-grow bg-ct-dark-100 rounded-md m-6 p-6 flex flex-col min-h-[500px]">
           <div className="flex-1 overflow-y-auto mb-4">
             {chatStore.messages.map((message, index) => (
-              <Message key={index} message={message} /> // Usando o componente Message
+              <Message key={index} message={message} />
             ))}
           </div>
 

@@ -4,12 +4,16 @@ export default function Home() {
   return (
     <>
       <Header />
-      <section className="bg-ct-secondary min-h-screen pt-20">
-        <div className="max-w-4xl mx-auto bg-ct-dark-100 rounded-md h-[20rem] flex justify-center items-center">
-          <p className="text-3xl font-semibold">
-            More fast, more food.
-          </p>
-        </div>
+      <section
+        className="relative min-h-[calc(100vh-80px)] pt-20 bg-cover bg-center bg-no-repeat flex items-center justify-center"
+        style={{ backgroundImage: "url('/images/home-background.jpg')",
+          backgroundBlendMode: "overlay",
+        }}
+      >
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <p className="absolute text-6xl font-extrabold text-ct-primary text-center">
+          More fast, more food.
+        </p>
       </section>
     </>
   );
