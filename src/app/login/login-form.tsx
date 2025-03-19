@@ -43,8 +43,8 @@ export default function LoginForm() {
     store.setRequestLoading(true);
     try {
       await apiLoginUser(JSON.stringify(credentials));
-      router.push("/");
       toast.success("Login feito com sucesso!");
+      router.push("/");
     } catch (error: any) {
       console.log(error);
       toast.error("Erro ao realizar o login. Tente novamente!");

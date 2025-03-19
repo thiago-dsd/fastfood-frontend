@@ -40,23 +40,9 @@ export default function RegisterForm() {
   async function RegisterUserFunction(credentials: RegisterUserInput & { passwordConfirm?: string }) {
     store.setRequestLoading(true);
     try {
-      const { passwordConfirm, ...userData } = credentials; 
-      const userPayload = { ...userData, role: "user" }; 
-  
-      const response = await fetch(`${process.env.NEXT_PUBLIC_CORE_API}/user`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userPayload),
-      });
-  
-      if (!response.ok) {
-        throw new Error("Erro ao criar conta");
-      }
-  
+      await apiRegisterUser(JSON.stringify(credentials));
       toast.success("Conta criada com sucesso! Faça login.");
-      return router.push("/login");
+      router.push("/login");
     } catch (error: any) {
       console.error(error);
       toast.error("Erro ao criar conta. Tente novamente.");
