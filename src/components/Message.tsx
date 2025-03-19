@@ -14,6 +14,28 @@ export default function Message({ message }: MessageProps) {
       } mb-4`}
     >
       <div
+        className={`relative flex shrink-0 overflow-hidden rounded-full w-8 h-8`}
+      >
+        <div className="rounded-full bg-gray-100 border p-1">
+          {message.type === "human" ? (
+            <img
+              src="/icons/user-avatar.svg" 
+              alt="User Avatar"
+              width={20}
+              height={20}
+            />
+          ) : (
+            <img
+              src="/icons/ai-avatar.svg" 
+              alt="AI Avatar"
+              width={20}
+              height={20}
+            />
+          )}
+        </div>
+      </div>
+
+      <div
         className={`rounded-lg p-3 max-w-[70%] ${
           message.type === "human"
             ? "bg-gray-500 text-white"

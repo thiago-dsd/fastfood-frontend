@@ -54,8 +54,34 @@ export default function ChatPage() {
   return (
     <>
       <Header />
-      <section className="bg-gradient-to-r from-red-400 to-red-300 min-h-[calc(100vh-80px)]  flex flex-col">
-        <div className="max-w-screen flex-grow bg-ct-dark-100 rounded-md m-6 p-6 flex flex-col min-h-[500px]">
+      <section className="bg-cover bg-center bg-no-repea min-h-[calc(100vh-80px)] flex flex-row p-6 space-x-6"
+      style={{ backgroundImage: "url('/images/login-background.jpg')",
+        backgroundBlendMode: "overlay",
+      }}>
+        <div className="flex flex-col space-y-3 max-w-screen flex-grow bg-ct-dark-100 rounded-md max-w-[400px] p-3"> 
+          
+        <p className="text-xl font-semibold text-gray-600">Seus pedidos!</p>
+                  <p className="text-md text-gray-600">Veja detalhes dos seus pedidos anteriores.</p>
+          <div className="flex bg-ct-dark-100 border p-4 rounded-lg space-x-4">
+              <div className="w-10 h-10 flex-shrink-0 rounded-full bg-gray-100 border p-2">
+                <img src="/icons/food-icon.svg" alt="Ícone de comida" className="w-full h-full object-contain" />
+              </div>
+
+
+              <div className="flex flex-col justify-between w-full">
+                <div className="flex justify-between items-center mb-2">
+                  <p className="text-md font-semibold text-gray-600">Pedido #12345</p>
+                  <p className="text-sm text-gray-400">22/03/2025 - 15:30</p>
+                </div>
+
+
+                <p className="text-sm text-gray-500">
+                  Pedido: 1 Pizza Margherita, 1 Coca-Cola. Aguardando o preparo.
+                </p>
+              </div>
+          </div>
+        </div>
+        <div className="max-w-screen flex-grow bg-ct-dark-100 rounded-md p-6 flex flex-col min-h-[500px]">
           <div className="flex-1 overflow-y-auto mb-4">
             {chatStore.messages.map((message, index) => (
               <Message key={index} message={message} />
@@ -82,6 +108,7 @@ export default function ChatPage() {
             </button>
           </div>
         </div>
+        
       </section>
     </>
   );
