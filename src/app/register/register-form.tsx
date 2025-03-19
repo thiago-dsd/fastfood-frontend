@@ -2,12 +2,14 @@
 
 import {
   RegisterUserInput,
+  LoginUserInput,
   RegisterUserSchema,
+  LoginUserSchema,
 } from "@/lib/validations/user.schema";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
-import { apiRegisterUser } from "@/lib/api-requests";
+import { apiLoginUser, apiRegisterUser } from "@/lib/api-requests";
 import FormInput from "@/components/FormInput";
 import Link from "next/link";
 import { LoadingButton } from "@/components/LoadingButton";
@@ -41,8 +43,14 @@ export default function RegisterForm() {
     store.setRequestLoading(true);
     try {
       await apiRegisterUser(JSON.stringify(credentials));
-      toast.success("Conta criada com sucesso! Faça login.");
-      router.push("/login");
+      
+      const loginInfo: LoginUserInput = {
+        email: credentials.email,
+        password: credentials.password,
+      };
+      await apiLoginUser(JSON.stringify(loginInfo));
+      toast.success("Conta criada com sucesso!");
+      router.push("/");
     } catch (error: any) {
       console.error(error);
       toast.error("Erro ao criar conta. Tente novamente.");
