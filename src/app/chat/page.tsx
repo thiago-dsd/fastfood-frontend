@@ -5,7 +5,7 @@ import Message from "@/components/Message"; // Importando o componente Message
 import { Message as MessageType } from "@/lib/types/message";
 import useStore from "@/store";
 import useChatStore from "@/store/chatStore";
-import { apiInvokeAgent } from "@/lib/api-requests";
+import { apiCreateOrder, apiInvokeAgent } from "@/lib/api-requests";
 import { useEffect, useState } from "react";
 
 export default function ChatPage() {
@@ -24,11 +24,17 @@ export default function ChatPage() {
 
     chatStore.setRequestLoading(true);
     try {
-      const agentResponse = await apiInvokeAgent(chatStore.inputValue);
+      const aux = await apiInvokeAgent(chatStore.inputValue);
       const aiMessage: MessageType = {
-        type: "ai",
-        content: agentResponse.content,
+        type: aux.type,
+        content: aux.content,
+        response_metadata: aux.response_metadata
       };
+
+      if (aux.response_metadata?.order_details?.description) {
+        await apiCreateOrder(aux.response_metadata.order_details.description);
+      }
+
       console.log("Resposta da IA:", aiMessage);
       chatStore.addMessage(aiMessage);
     } catch (error) {

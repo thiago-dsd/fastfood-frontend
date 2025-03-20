@@ -138,3 +138,18 @@ export async function apiStreamAgent(
 
   return response.body!;
 }
+
+export async function apiCreateOrder(description: string): Promise<void> {  
+  const response = await fetch(`/api/order/create`, { 
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ description })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Erro ao criar pedido: ${response.statusText}`);
+  }
+}
