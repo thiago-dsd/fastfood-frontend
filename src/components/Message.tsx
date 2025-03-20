@@ -42,7 +42,7 @@ export default function Message({ message }: MessageProps) {
             : "bg-gray-200 text-gray-800"
         }`}
       >
-        <p>{message.content}</p>
+        <p className="whitespace-pre-wrap">{message.content}</p>
         <span className="text-xs text-gray-400 block mt-1">
           {new Date().toLocaleTimeString()}
         </span>

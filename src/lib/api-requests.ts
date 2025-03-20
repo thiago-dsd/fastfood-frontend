@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { AgentInfo } from "./types/agent";
 import { UserLoginResponse, UserResponse, FilteredUser} from "./types/user";
 import { Message } from "./types/message";
+import { Order } from "./types/order";
 
 const SERVER_ENDPOINT = process.env.NEXT_PUBLIC_CORE_API || "http://127.0.0.1:4200";
 
@@ -152,4 +153,26 @@ export async function apiCreateOrder(description: string): Promise<void> {
   if (!response.ok) {
     throw new Error(`Erro ao criar pedido: ${response.statusText}`);
   }
+}
+
+export async function apiGetAllOrders(): Promise<Order[]> {  
+  const response = await fetch(`/api/order/all`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  const orders: Order[] = data.map((order: any) => ({
+    id: order.id,
+    userId: order.user_id,
+    description: order.description,
+    createdAt: order.created_at,
+    updatedAt: order.updated_at,
+  }));
+  
+  console.log(orders)
+  return orders;
 }
