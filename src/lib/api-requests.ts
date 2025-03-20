@@ -155,24 +155,38 @@ export async function apiCreateOrder(description: string): Promise<void> {
   }
 }
 
-export async function apiGetAllOrders(): Promise<Order[]> {  
-  const response = await fetch(`/api/order/all`, {
-    method: "GET",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export async function apiGetAllOrders(): Promise<Order[]> {
+  console.log("Iniciando apiGetAllOrders..."); // Log inicial
+  try {
+    const response = await fetch(`/api/order/all`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  const data = await response.json();
-  const orders: Order[] = data.map((order: any) => ({
-    id: order.id,
-    userId: order.user_id,
-    description: order.description,
-    createdAt: order.created_at,
-    updatedAt: order.updated_at,
-  }));
-  
-  console.log(orders)
-  return orders;
+    console.log("Resposta da API recebida:", response); // Log da resposta bruta
+
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    console.log("Dados brutos da API:", data); // Log dos dados brutos
+
+    const orders: Order[] = data.map((order: any) => ({
+      id: order.id,
+      userId: order.user_id,
+      description: order.description,
+      createdAt: order.created_at,
+      updatedAt: order.updated_at,
+    }));
+
+    console.log("Dados mapeados para Order[]:", orders); // Log dos dados mapeados
+    return orders;
+  } catch (error) {
+    console.error("Erro em apiGetAllOrders:", error); // Log de erro
+    throw error;
+  }
 }

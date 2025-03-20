@@ -13,6 +13,7 @@ interface ChatStore {
   setRequestLoading: (isLoading: boolean) => void;
   clearMessages: () => void;
   setOrders: (value: Order[]) => void;
+  replaceOrders: (newOrders: Order[]) => void;
 }
 
 const useChatStore = create<ChatStore>((set) => ({
@@ -21,7 +22,7 @@ const useChatStore = create<ChatStore>((set) => ({
   inputValue: "",
   requestLoading: false,
   setInputValue: (value) => set({ inputValue: value }),
-  setOrders: (value: Order[]) => {orders: value},
+  setOrders: (value: Order[]) => set({ orders: value }),
   addMessage: (message) =>
     set((state) => ({ messages: [...state.messages, message] })),
   addOrder: (currentOrder: Order) =>
@@ -30,6 +31,8 @@ const useChatStore = create<ChatStore>((set) => ({
     set((state) => ({ ...state, requestLoading: isLoading })),
   clearMessages: () => set({ messages: [] }),
   clearOrders: () => set({ orders: [] }),
+  replaceOrders: (newOrders: Order[]) => 
+    set({ orders: newOrders }),
 }));
 
 export default useChatStore;

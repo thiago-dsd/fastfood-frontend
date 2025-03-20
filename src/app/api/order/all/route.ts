@@ -26,6 +26,6 @@ export async function GET(req: NextRequest) {
     return response;
   } catch (error: any) {
     console.error("Erro ao buscar pedidos:", error.message);
-    throw error; // Rejeita a Promise para que o chamador possa lidar com o erro
+    throw error;
   }
 }
