@@ -30,31 +30,24 @@
 - **`ct-dark-600`**: Cor escura (#222).
 - **`ct-dark-200`**: Cor intermediária clara (#e5e7eb).
 
-## Instalação
+## Como rodar o projeto?
 
-Para rodar este projeto localmente, siga as etapas abaixo:
-
-### 1. Clone o repositório:
-
-```bash
-git clone https://github.com/seu-usuario/fastfood-frontend.git
-```
-
-### 2. Navegue até o diretório do projeto:
-
-```bash
-git clone https://github.com/seu-usuario/fastfood-frontend.git
-```
-
-### 3. Instale as dependências:
+### 1. Instale as dependências:
 
 ```bash
 npm install
 ```
 
 
-### 4. Execute o aplicativo:
+### 2. Execute o aplicativo:
 
 ```bash
 npm run dev
 ```
+
+## Preview
+### Fluxo de autenticação
+![Login](./media/login-preview.png)
+![Register](./media/register-preview.png)
+### Web Chat para interação com UI
+![Chat](./media/chat-preview.png)

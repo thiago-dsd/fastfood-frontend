@@ -43,9 +43,6 @@ export default function Message({ message }: MessageProps) {
         }`}
       >
         <p className="whitespace-pre-wrap">{message.content}</p>
-        <span className="text-xs text-gray-400 block mt-1">
-          {new Date().toLocaleTimeString()}
-        </span>
       </div>
     </div>
   );

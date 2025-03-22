@@ -33,7 +33,7 @@ const OrderComponent: React.FC<OrderProps> = ({ order }) => {
             {/* <p className="text-sm text-gray-400">{formattedDate}</p> */}
           </div>
 
-          <p className="whitespace-pre-wrap text-sm text-gray-500">
+          <p className="whitespace-pre-wrap text-sm text-gray-500 line-clamp-5">
             Pedido: {order.description}. Aguardando o preparo.
           </p>
         </div>
