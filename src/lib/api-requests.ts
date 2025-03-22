@@ -107,11 +107,6 @@ export async function apiInvokeAgent(
     },
     body: JSON.stringify({
       message,
-      model: "gpt-4o-mini",
-      thread_id: "847c6285-8fc9-4560-a83f-4e6285809254",
-      agent_config: {
-        spicy_level: 0.8,
-      },
     }),
   });
 

@@ -90,6 +90,7 @@ export default function ChatPage() {
       };
 
       setTimeout(() => {
+        chatStore.clearMessages();
         chatStore.addMessage(botResponse);
       }, 1000);
     }

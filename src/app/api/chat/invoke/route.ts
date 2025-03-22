@@ -1,13 +1,19 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
+    
+    const cookieStore = cookies();
+    const token = cookieStore.get("session_token")?.value;
+      
     const { message, model, thread_id } = await req.json();
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_AGENT_API}/invoke`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ message, model, thread_id }),
     });
