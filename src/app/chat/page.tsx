@@ -1,36 +1,32 @@
 "use client";
 
 import Header from "@/components/Header";
-import Message from "@/components/Message"; // Importando o componente Message
+import Message from "@/components/Message";
 import { Message as MessageType } from "@/lib/types/message";
 import useStore from "@/store";
 import useChatStore from "@/store/chatStore";
 import { apiCreateOrder, apiGetAllOrders, apiInvokeAgent } from "@/lib/api-requests";
-import { useEffect, useRef } from "react"; // Adicionando useRef
+import { useEffect, useRef } from "react";
 import Order from "@/components/Order";
 
 export default function ChatPage() {
   const chatStore = useChatStore();
-  const messagesEndRef = useRef<HTMLDivElement>(null); // Ref para o final das mensagens do chat
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Função para rolar para o final das mensagens do chat
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Efeito para rolar para o final sempre que as mensagens forem atualizadas
   useEffect(() => {
     scrollToBottom();
   }, [chatStore.messages]);
 
   const loadOrders = async () => {
     try {
-      console.log("Buscando pedidos..."); // Log inicial
-      const orders = await apiGetAllOrders(); // Busca os pedidos da API
-      console.log("Pedidos recebidos:", orders); // Log dos pedidos recebidos
-      chatStore.replaceOrders(orders); // Atualiza a store com os pedidos
+      const orders = await apiGetAllOrders();
+      chatStore.replaceOrders(orders);
     } catch (error) {
-      console.error("Erro ao buscar pedidos:", error); // Log de erro
+      console.error("Erro ao buscar pedidos:", error);
     }
   };
 
@@ -39,7 +35,6 @@ export default function ChatPage() {
   }, []);
 
   const handleSendMessage = async () => {
-    console.log("Iniciando handleSendMessage..."); // Log inicial
     if (chatStore.inputValue.trim() === "") return;
 
     const userMessage: MessageType = {
@@ -47,16 +42,13 @@ export default function ChatPage() {
       content: chatStore.inputValue,
     };
 
-    console.log("Adicionando mensagem do usuário ao estado:", userMessage); // Log da mensagem do usuário
     chatStore.addMessage(userMessage);
     chatStore.setInputValue("");
 
     chatStore.setRequestLoading(true);
-    console.log("Estado de loading definido como true"); // Log do estado de loading
 
     try {
       const aux = await apiInvokeAgent(chatStore.inputValue);
-      console.log("Resposta da IA recebida:", aux); // Log da resposta da IA
 
       const aiMessage: MessageType = {
         type: aux.type,
@@ -65,19 +57,14 @@ export default function ChatPage() {
       };
 
       if (aux.response_metadata?.order_details?.description) {
-        console.log("Detalhes do pedido encontrados na resposta da IA:", aux.response_metadata.order_details); // Log dos detalhes do pedido
         await apiCreateOrder(aux.response_metadata.order_details.description);
         const response = await apiGetAllOrders();
-        console.log("Pedidos recebidos após criação:", response); // Log dos pedidos recebidos
         chatStore.replaceOrders(response);
       }
 
-      console.log("Adicionando mensagem da IA ao estado:", aiMessage); // Log da mensagem da IA
       chatStore.addMessage(aiMessage);
     } catch (error) {
-      console.error("Erro em handleSendMessage:", error); // Log de erro
     } finally {
-      console.log("Estado de loading definido como false"); // Log do estado de loading
       chatStore.setRequestLoading(false);
     }
   };
@@ -106,7 +93,6 @@ export default function ChatPage() {
           backgroundBlendMode: "overlay",
         }}
       >
-        {/* Área de pedidos com barra de rolagem */}
         {chatStore.orders.length > 0 && (
           <div className="flex flex-col space-y-3 bg-ct-dark-100 rounded-md p-3 w-[400px] h-[calc(100vh-140px)] overflow-y-auto">
             <p className="text-xl font-semibold text-gray-600">Seus pedidos!</p>
@@ -117,18 +103,14 @@ export default function ChatPage() {
           </div>
         )}
 
-        {/* Área do chat com barra de rolagem */}
         <div className="flex-grow bg-ct-dark-100 rounded-md p-6 flex flex-col h-[calc(100vh-140px)]">
-          {/* Contêiner das mensagens com barra de rolagem */}
           <div className="flex-1 overflow-y-auto mb-4">
             {chatStore.messages.map((message, index) => (
               <Message key={index} message={message} />
             ))}
-            {/* Elemento invisível para rolar até o final */}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Área de entrada de mensagens */}
           <div className="flex gap-2">
             <input
               type="text"

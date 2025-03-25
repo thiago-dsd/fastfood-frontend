@@ -4,8 +4,6 @@ import { UserLoginResponse, UserResponse, FilteredUser} from "./types/user";
 import { Message } from "./types/message";
 import { Order } from "./types/order";
 
-const SERVER_ENDPOINT = process.env.NEXT_PUBLIC_CORE_API || "http://127.0.0.1:4200";
-
 async function handleResponse<T>(response: Response): Promise<T> {
   const contentType = response.headers.get("Content-Type") || "";
   const isJson = contentType.includes("application/json");
@@ -151,7 +149,6 @@ export async function apiCreateOrder(description: string): Promise<void> {
 }
 
 export async function apiGetAllOrders(): Promise<Order[]> {
-  console.log("Iniciando apiGetAllOrders..."); // Log inicial
   try {
     const response = await fetch(`/api/order/all`, {
       method: "GET",
@@ -161,14 +158,11 @@ export async function apiGetAllOrders(): Promise<Order[]> {
       },
     });
 
-    console.log("Resposta da API recebida:", response); // Log da resposta bruta
-
     if (!response.ok) {
       throw new Error(`Erro na requisição: ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log("Dados brutos da API:", data); // Log dos dados brutos
 
     const orders: Order[] = data.map((order: any) => ({
       id: order.id,
@@ -178,10 +172,9 @@ export async function apiGetAllOrders(): Promise<Order[]> {
       updatedAt: order.updated_at,
     }));
 
-    console.log("Dados mapeados para Order[]:", orders); // Log dos dados mapeados
     return orders;
   } catch (error) {
-    console.error("Erro em apiGetAllOrders:", error); // Log de erro
+    console.error("Erro em apiGetAllOrders:", error);
     throw error;
   }
 }

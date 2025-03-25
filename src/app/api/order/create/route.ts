@@ -16,8 +16,6 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    console.log(JSON.stringify(body))
-
     const response = await fetch(`${process.env.NEXT_PUBLIC_CORE_API}/order`, { 
       method: "POST",
       headers: {

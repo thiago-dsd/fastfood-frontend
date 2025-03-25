@@ -33,40 +33,6 @@ export async function middleware(req: NextRequest) {
   }
 
   const response = NextResponse.next();
-  
-
-  // try {
-  //   if (token) {
-  //     const { sub } = await verifyJWT<{ sub: string }>(token);
-  //     response.headers.set("X-USER-ID", sub);
-  //     (req as AuthenticatedRequest).user = { id: sub };
-  //   }
-  // } catch (error) {
-  //   redirectToLogin = true;
-  //   if (req.nextUrl.pathname.startsWith("/api")) {
-  //     return getErrorResponse(401, "Token is invalid or user doesn't exists");
-   
-  //   return NextResponse.redirect(
-  //     new URL(`/login?${new URLSearchParams({ error: "badauth" })}`, req.url)
-  //   );
-  // }
-
-  // const authUser = (req as AuthenticatedRequest).user;
-
-  // if (!authUser) {
-  //   return NextResponse.redirect(
-  //     new URL(
-  //       `/login?${new URLSearchParams({
-  //         error: "badauth",
-  //         forceLogin: "true",
-  //       })}`,
-  //       req.url
-  //     )
-  //   );
-  // }
-
-  // if (req.url.includes("/login") && authUser) {
-
   return response;
 }
 
