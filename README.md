@@ -32,6 +32,9 @@
 
 ## Como rodar o projeto?
 
+### ⚙️ 0. Configure o ambiente:
+Transforme o arquivo .env.example em .env
+
 ### 📦 1. Instale as dependências:
 
 ```bash
