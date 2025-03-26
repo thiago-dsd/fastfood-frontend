@@ -30,19 +30,18 @@
 - **`ct-dark-600`**: Cor escura (#222).
 - **`ct-dark-200`**: Cor intermediária clara (#e5e7eb).
 
-## Como rodar o projeto?
+## ⚙️ Como rodar o projeto?
 
-### ⚙️ 0. Configure o ambiente:
+### 1️⃣ Configure o ambiente:
 Transforme o arquivo .env.example em .env
 
-### 📦 1. Instale as dependências:
+### 2️⃣ Instale as dependências:
 
 ```bash
 npm install
 ```
 
-
-### 🚀 2. Execute o aplicativo:
+### 3️⃣ Execute o aplicativo:
 
 ```bash
 npm run dev
