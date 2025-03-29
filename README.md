@@ -13,15 +13,16 @@
 
 - **Cadastro de usuário**: Permite que os usuários se cadastrem para começar a fazer pedidos.
 - **Login**: Usuários podem se autenticar para acessar o sistema.
-- **Interação com IA**: Usuários podem conversar com uma IA para decidir/registrar seus pedidos.
+- **Realize seu pedido**: Conversar com uma IA para decidir/registrar seus pedidos.
+- **Consultar pedido**: Área para consultar pedidos anteriores.
 - **Design responsivo**: A interface é adaptável a diferentes tamanhos de tela, proporcionando uma boa experiência em dispositivos móveis e desktop.
 
 ## 📁 Estrutura de Diretórios
 
-- **`pages/`**: Contém as páginas do aplicativo, incluindo a página de login, criação de conta e outras telas do sistema.
+- **`app/`**: Contém as páginas do aplicativo, incluindo a página de login, criação de conta e outras telas do sistema.
 - **`components/`**: Contém os componentes reutilizáveis, como o cabeçalho e os formulários.
-- **`styles/`**: Contém os arquivos de estilos globais do aplicativo.
-- **`public/`**: Contém arquivos públicos, como imagens e ícones.
+- **`lib/`**: Contém os arquivos de estilos globais do aplicativo.
+- **`store/`**: Contém arquivos públicos, como imagens e ícones.
 
 ## 🎨 Este projeto utiliza o **Tailwind CSS** para estilização, e as cores estão definidas no arquivo `tailwind.config.js`:
 
