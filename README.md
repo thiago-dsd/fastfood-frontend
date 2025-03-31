@@ -20,9 +20,9 @@
 ## 📁 Estrutura de Diretórios
 
 - **`app/`**: Contém as páginas do aplicativo, incluindo a página de login, criação de conta e outras telas do sistema.
-- **`components/`**: Contém os componentes reutilizáveis, como o cabeçalho e os formulários.
-- **`lib/`**: Contém os arquivos de estilos globais do aplicativo.
-- **`store/`**: Contém arquivos públicos, como imagens e ícones.
+- **`components/`**: Contém os componentes reutilizáveis, como o header e os botões.
+- **`lib/`**: Contém aquivos utilitários que vão desde validadores até tipagem.
+- **`store/`**: Armazena as entidades que coordenam os estados da aplicação.
 
 ## 🎨 Este projeto utiliza o **Tailwind CSS** para estilização, e as cores estão definidas no arquivo `tailwind.config.js`:
 
