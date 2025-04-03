@@ -20,6 +20,7 @@
 ## 📁 Estrutura de Diretórios
 
 - **`app/`**: Contém as páginas do aplicativo, incluindo a página de login, criação de conta e outras telas do sistema.
+- **`app/api`**: Lógica de equisição para API's.
 - **`components/`**: Contém os componentes reutilizáveis, como o header e os botões.
 - **`lib/`**: Contém aquivos utilitários que vão desde validadores até tipagem.
 - **`lib/types`**: Classes que representam entidades no projeto.
