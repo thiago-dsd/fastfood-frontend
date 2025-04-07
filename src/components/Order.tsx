@@ -28,9 +28,8 @@ const OrderComponent: React.FC<OrderProps> = ({ order }) => {
         <div className="flex flex-col justify-between w-full">
           <div className="flex justify-between items-center mb-2">
             <p className="text-md font-semibold text-gray-600">
-              Pedido {/* Geração de um número aleatório para o pedido */}
+              Pedido
             </p>
-            {/* <p className="text-sm text-gray-400">{formattedDate}</p> */}
           </div>
 
           <p className="whitespace-pre-wrap text-sm text-gray-500 line-clamp-5">
