@@ -8,7 +8,7 @@ import { apiLoginUser } from "@/lib/api-requests";
 import FormInput from "@/components/FormInput";
 import Link from "next/link";
 import { LoadingButton } from "@/components/LoadingButton";
-import useStore from "@/store";
+import useStore from "@/store/userStore";
 import { handleApiError } from "@/lib/helpers";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";

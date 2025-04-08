@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { apiGetAuthUser } from "./api-requests";
-import useStore from "@/store";
+import useStore from "@/store/userStore";
 
 export default function useSession() {
   const store = useStore();

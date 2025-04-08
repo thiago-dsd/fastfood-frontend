@@ -3,7 +3,7 @@
 import Spinner from "./Spinner";
 import Link from "next/link";
 import useSession from "@/lib/useSession";
-import useStore from "@/store";
+import useStore from "@/store/userStore";
 import { apiLogoutUser } from "@/lib/api-requests";
 import { useRouter } from "next/navigation";
 

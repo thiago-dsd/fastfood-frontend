@@ -3,7 +3,7 @@
 import Header from "@/components/Header";
 import Message from "@/components/Message";
 import { Message as MessageType } from "@/lib/types/message";
-import useStore from "@/store";
+import useStore from "@/store/userStore";
 import useChatStore from "@/store/chatStore";
 import { apiCreateOrder, apiGetAllOrders, apiInvokeAgent } from "@/lib/api-requests";
 import { useEffect, useRef } from "react";

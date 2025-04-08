@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import { apiGetAuthUser } from "@/lib/api-requests";
 import { cookies } from "next/headers";
 import { AuthPageInvisible } from "@/lib/protect-page";
-import useStore from "@/store";
+import useStore from "@/store/userStore";
 
 export default async function ProfilePage() {
   const user = useStore((state) => state.authUser);
