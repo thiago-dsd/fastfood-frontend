@@ -2,12 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyJWT } from "./lib/token";
 import { getErrorResponse } from "./lib/helpers";
 
-interface AuthenticatedRequest extends NextRequest {
-  user: {
-    id: string;
-  };
-}
-
 let redirectToLogin = false;
 export async function middleware(req: NextRequest) {
   let token: string | undefined;
