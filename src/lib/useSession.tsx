@@ -8,9 +8,9 @@ export default function useSession() {
   async function fetchUser() {
     try {
       const user = await apiGetAuthUser()
-      store.setAuthUser(user)
+      store.setAuthUser(user) // set user if authenticate
     } catch (error: any) {
-      store.reset()
+      store.reset() // else reset store
     }
   }
 
