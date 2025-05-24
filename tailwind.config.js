@@ -21,6 +21,7 @@ module.exports = {
       container: {
         center: true,
         padding: '1rem',
+        // Defining screen sizes for responsiveness.
         screens: {
           lg: '1125px',
           xl: '1125px',
