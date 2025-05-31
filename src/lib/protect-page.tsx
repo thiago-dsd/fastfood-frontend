@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 
+// redirects to login if the user is not authenticated
 const requireAuth = () => {
   const loggedIn = document.cookie.includes("session_token=");
 
